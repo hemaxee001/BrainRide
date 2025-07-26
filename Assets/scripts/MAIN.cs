@@ -77,6 +77,7 @@ public class MAIN : MonoBehaviour
             Destroy(collision.gameObject);
             score++;
             scoreText.text = score.ToString();
+            AudioManager.instance.playCoinSound();
 
         }
         else if (collision.gameObject.CompareTag("coin5"))
@@ -84,17 +85,20 @@ public class MAIN : MonoBehaviour
             Destroy(collision.gameObject);
             score += 5;
             scoreText.text = score.ToString();
+            AudioManager.instance.playCoinSound();
         }
         else if (collision.gameObject.CompareTag("coin10"))
         {
             Destroy(collision.gameObject);
             score += 10;
             scoreText.text = score.ToString();
+            AudioManager.instance.playCoinSound();
         }
         else if (collision.gameObject.CompareTag("fuel"))
         {
             fuel = 100;
             Destroy(collision.gameObject); // Destroy the fuel object
+            AudioManager.instance.playFuelSound();
         }
         else if (collision.gameObject.CompareTag("exitarrow"))
         {

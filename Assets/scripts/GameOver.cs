@@ -13,6 +13,7 @@ public class GameOver : MonoBehaviour
     }
     public void LevelSelection()
     {
+        //AudioManager.instance.crashSource.Stop();
         //StartCoroutine(ScreenManager.instance.ShowLoadAndShowLevelSelection());
         screenManager.instance.ShowLoadAndShowLevelSelection();
     }

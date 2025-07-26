@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +15,17 @@ public class carManager : MonoBehaviour
     private JointMotor2D backMotor, frontMotor;
     public static carManager instance;
 
-    public ParticleSystem ps;
-
     bool isMoveLeft = false;
     bool isMoveRight = false;
 
     private bool wasMoving = false;
+    private bool isCrash = false;
+
+    private float targetPitch = 1f;
+    private float targetVolume = 1f;
+    private float idlePitch = 0.6f;
+    private float idleVolume = 0.2f;
+
 
     private void Awake()
     {
@@ -55,7 +61,11 @@ public class carManager : MonoBehaviour
             frontMotor.motorSpeed = 0;
             frontWheelJoint.motor = frontMotor;
             backWheelJoint.motor = backMotor;
-            StopEngineAudio();
+            if(!isCrash){
+                isCrash = true; // Set crash state to true
+                AudioManager.instance.PlayCrashSound();
+                StopEngineAudio();
+            }
             return;
         }
         //else
@@ -87,7 +97,7 @@ public class carManager : MonoBehaviour
             frontMotor.motorSpeed = 0;
             isCurrentlyMoving = false;
 
-            ps.Stop();
+                //ps.Stop();
         }
         frontWheelJoint.motor = frontMotor;
         backWheelJoint.motor = backMotor;
@@ -97,13 +107,24 @@ public class carManager : MonoBehaviour
         {
 
             PlayEngineAudio();
-            ps.Play();
+           //ps.Play();
         }
         else if (!isCurrentlyMoving && wasMoving)
         {
             StopEngineAudio();
-            ps.Stop();
+           //ps.Stop();
         }
+        if (isCurrentlyMoving)
+        {
+            targetPitch = 1.2f;
+            targetVolume = 1f;
+        }
+        else
+        {
+            targetPitch = idlePitch;
+            targetVolume = idleVolume;
+        }
+        UpdateEngineSoundSimple();
 
 
     }
@@ -128,6 +149,14 @@ public class carManager : MonoBehaviour
     {
         if (!AudioManager.instance.carEngineAudioSource.isPlaying)
             AudioManager.instance.carEngineAudioSource.Play();
+    }
+    private void UpdateEngineSoundSimple()
+    {
+        AudioSource engine = AudioManager.instance.carEngineAudioSource;
+
+        // Smoothly move toward target pitch and volume
+        engine.pitch = Mathf.Lerp(engine.pitch, targetPitch, Time.deltaTime * 3f);
+        engine.volume = Mathf.Lerp(engine.volume, targetVolume, Time.deltaTime * 3f);
     }
 }
 

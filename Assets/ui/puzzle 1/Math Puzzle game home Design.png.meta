@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Math Puzzle game home Design_0: 8575066622378115289
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

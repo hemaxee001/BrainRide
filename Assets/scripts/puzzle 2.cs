@@ -14,6 +14,7 @@ public class puzzle2 : MonoBehaviour
     public Button nextLevel;
     void Start()
     {
+        AudioManager.instance.stopCarEngine();
         gridLayoutGroup = grid.GetComponent<GridLayoutGroup>();
         Vector2 gridSize = grid.sizeDelta;
 
@@ -36,10 +37,8 @@ public class puzzle2 : MonoBehaviour
                 var b = clone.GetComponent<Button>();
                 var t = b.GetComponentInChildren<Text>();
                 buttons[i, j] = t;
-
                 int ROWS = i;
                 int COLS = j;
-
                 t.text = List[count++];
 
                 b.onClick.AddListener(() => { Move(ROWS, COLS); });

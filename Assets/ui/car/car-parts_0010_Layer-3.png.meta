@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      car-parts_0010_Layer-3_0: 7462022088064466562
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,12 +4,6 @@ public class intromanager : MonoBehaviour
 {
     public GameObject intro1, intro2;
 
-    public static intromanager instance;
-    private void Awake()
-    {
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
     private void Start()
     {
         Invoke("openIntro2", 1.20f);

@@ -20,8 +20,9 @@ public class puzzle1 : MonoBehaviour
     }
     void Start()
     {
-        AudioManager.instance.carEngineAudioSource.Stop();
-
+        //AudioManager.instance.carEngineAudioSource.Stop();
+        AudioManager.instance.stopBG();
+        AudioManager.instance.stopCarEngine();
     }
     
 

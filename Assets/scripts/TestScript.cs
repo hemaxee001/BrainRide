@@ -5,8 +5,11 @@ public class TestScript : MonoBehaviour
 {
 
     public ParticleSystem ps;
-   
-
+    public static TestScript instance; // Singleton instance
+    private void Awake()
+    {
+        instance = this;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         print("Collision detected with:::::::::::::::::: " + collision.gameObject.name + " ---->  " + gameObject.name);
@@ -14,9 +17,6 @@ public class TestScript : MonoBehaviour
         {
             ps.Play();
         }
-        //if(gameObject.name == "gameover check"){
-        //    MAIN.isGameRunning = false;
-        //}
     }
 
     private void OnCollisionExit2D(Collision2D collision)

@@ -19,6 +19,7 @@ public class levelSelection : MonoBehaviour
     }
     public void startLevel(int level)
     {
+       
         GameManager.instance.startGamePlay(level);
       
         gameObject.SetActive(false);

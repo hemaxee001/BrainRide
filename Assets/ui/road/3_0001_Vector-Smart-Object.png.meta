@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      3_0001_Vector-Smart-Object_0: 5065836069303055441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

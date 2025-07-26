@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class screenManager : MonoBehaviour
 {
 
-    public GameObject home, levelSelection;
+    public GameObject home, levelSelection, intro;
     public static screenManager instance;
 
-    public  int levelIndex = 1;
+    public int levelIndex = 1;
     public static string directShowScreen = "";
 
     private void Awake()
@@ -21,13 +21,15 @@ public class screenManager : MonoBehaviour
         }
         else
         {
+            //print(":::::::::::: " + directShowScreen);
             if (directShowScreen != "")
             {
+                intro.SetActive(false);
 
                 switch (directShowScreen)
                 {
                     case "home":
-                        intromanager.instance.gameObject.SetActive(false);
+                        //intromanager.instance.gameObject.SetActive(false);
                         levelSelection.SetActive(false);
                         ShowHome();
                         break;
@@ -40,23 +42,24 @@ public class screenManager : MonoBehaviour
             }
         }
     }
-   
+
     public void ShowHome()
     {
-        
+        AudioManager.instance.startBG();         
+        AudioManager.instance.stopCarEngine();
         home.SetActive(true);
         levelSelection.SetActive(false);
     }
-    
+
     public void ShowLevelSelection()
     {
         print("ShowLevelSelection ::  home -> " + home);
         print("ShowLevelSelection ::  levelSelection -> " + levelSelection);
-        intromanager.instance.gameObject.SetActive(false);
+        //intromanager.instance.gameObject.SetActive(false);
         home.SetActive(false);
         levelSelection.SetActive(true);
     }
-   
+
     public void ShowLevel(int level)
     {
         levelIndex = level;
@@ -82,6 +85,7 @@ public class screenManager : MonoBehaviour
     }
     internal void ShowLoadAndHome()
     {
+        //print(":::::::::::::: ShowLoadAndHome :::::::::::::::");
         directShowScreen = "home";
         SceneManager.LoadScene("homeLevelscreen");
     }
